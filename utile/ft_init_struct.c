@@ -6,19 +6,22 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:49 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/24 12:11:36 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:23:11 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	ft_init_struct(t_philo *philo, char **argv)
+int	ft_init_struct(t_philo *philo, int argc, char **argv)
 {
 	philo->nbr_philo = ft_atol(argv[1]);
 	philo->time_to_die = ft_atol(argv[2]);
 	philo->time_to_eat = ft_atol(argv[3]);
 	philo->time_to_sleep = ft_atol(argv[4]);
-	philo->nbr_eat_philo = ft_atol(argv[5]);
+	if (argc == 6)
+		philo->nbr_eat_philo = ft_atol(argv[5]);
+	else
+		philo->nbr_eat_philo = -1;
 	if ((ft_init_mutex(philo)) > 0)
 		return (EXIT_FAILURE);
 	if ((ft_init_thread(philo)) > 0)

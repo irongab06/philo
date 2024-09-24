@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:57 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/24 12:06:13 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:22:22 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philo
 	pthread_t	*thread;
 }			t_philo;
 
-int	ft_init_struct(t_philo *philo, char **argv);
+int	ft_init_struct(t_philo *philo, int argc, char **argv);
 int	main(int	argc, char **argv);
 int	ft_check_argv(char *str);
 int	ft_check(int argc, char **argv);
