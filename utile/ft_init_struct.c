@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:49 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/24 12:23:11 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:56:35 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	ft_init_struct(t_philo *philo, int argc, char **argv)
 		return (EXIT_FAILURE);
 	if ((ft_init_thread(philo)) > 0)
 		return (EXIT_FAILURE);
+	if ((ft_check_zero(philo, argc)) > 0)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 

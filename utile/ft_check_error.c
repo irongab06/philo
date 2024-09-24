@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:10:24 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/24 10:49:17 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:08:14 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,31 @@ int	ft_check_argv(char *str)
 			return (EXIT_FAILURE);
 		}
 		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	ft_check_zero(t_philo *philo, int argc)
+{
+	if (philo->time_to_die == 0)
+	{
+		printf("bad duration for die");
+		return (EXIT_FAILURE);
+	}
+	if (philo->time_to_eat == 0 || (philo->nbr_eat_philo == 0))
+	{
+		printf("bad duration for eat");
+		return (EXIT_FAILURE);
+	}
+	if (philo->time_to_sleep == 0)
+	{
+		printf("bad duration for sleep");
+		return (EXIT_FAILURE);
+	}
+	if (philo->nbr_philo == 0)
+	{
+		printf("wrong number of philo");
+		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
