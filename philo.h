@@ -30,13 +30,23 @@ typedef struct s_philo
 	pthread_t	*thread;
 }			t_philo;
 
-int	ft_init_struct(t_philo *philo, int argc, char **argv);
+typedef struct s_philo_data
+{
+	int	id;
+	t_philo *philo;
+}			t_philo_data;
+
+
+void	*ft_philo(void *data);
+
+int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **argv);
 int	main(int	argc, char **argv);
 int	ft_check_argv(char *str);
 int	ft_check(int argc, char **argv);
 int	ft_init_mutex(t_philo *philo);
 int	ft_init_thread(t_philo *philo);
 int	ft_check_zero(t_philo *philo, int argc);
+int	ft_init_thread_data(t_philo *philo, t_philo_data **philo_data);
 
 long ft_atol(char *str);
 

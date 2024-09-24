@@ -12,7 +12,7 @@
 
 #include "../philo.h"
 
-int	ft_philo(t_philo *philo, int argc, char **argv)
+void	*ft_philo(void *data)
 {
 	
 }

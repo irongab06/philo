@@ -12,7 +12,7 @@
 
 #include "../philo.h"
 
-int	ft_init_struct(t_philo *philo, int argc, char **argv)
+int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **argv)
 {
 	philo->nbr_philo = ft_atol(argv[1]);
 	philo->time_to_die = ft_atol(argv[2]);
@@ -25,6 +25,8 @@ int	ft_init_struct(t_philo *philo, int argc, char **argv)
 	if ((ft_init_mutex(philo)) > 0)
 		return (EXIT_FAILURE);
 	if ((ft_init_thread(philo)) > 0)
+		return (EXIT_FAILURE);
+	if ((ft_init_thread_data(philo, philo_data)) > 0)
 		return (EXIT_FAILURE);
 	if ((ft_check_zero(philo, argc)) > 0)
 		return (EXIT_FAILURE);

@@ -20,6 +20,7 @@ int	ft_init_mutex(t_philo *philo)
 		printf("fail malloc mutex");
 		return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
 }
 
 int	ft_init_thread(t_philo *philo)
@@ -30,4 +31,16 @@ int	ft_init_thread(t_philo *philo)
 		printf("fail malloc thread");
 		return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
+}
+
+int	ft_init_thread_data(t_philo *philo, t_philo_data **philo_data)
+{
+	*philo_data = malloc(sizeof(t_philo_data) * philo->nbr_philo);
+	if (*philo_data == NULL)
+	{
+		printf("fail malloc philo_data");
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }
