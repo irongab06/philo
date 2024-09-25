@@ -18,6 +18,7 @@ int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **a
 	philo->time_to_die = ft_atol(argv[2]);
 	philo->time_to_eat = ft_atol(argv[3]);
 	philo->time_to_sleep = ft_atol(argv[4]);
+	philo->die = 0;
 	if (argc == 6)
 		philo->nbr_eat_philo = ft_atol(argv[5]);
 	else

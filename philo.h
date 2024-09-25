@@ -26,18 +26,31 @@ typedef struct s_philo
 	long	time_to_eat;
 	long	nbr_philo;
 	long	nbr_eat_philo;
+	long	timer_start;
+	int		die;
 	pthread_mutex_t	*mutex;
+	pthread_mutex_t mutex_for_die;
 	pthread_t	*thread;
 }			t_philo;
 
 typedef struct s_philo_data
 {
 	int	id;
+	long	eat_time;
+	long	sleep_time;
+	long	die_time;
+	long	philo_time_start;
+	long	philo_time_end;
 	t_philo *philo;
 }			t_philo_data;
 
 
 void	*ft_philo(void *data);
+void	check_die(t_philo_data *philo_data);
+void	init_die(t_philo_data *philo_data);
+void	thinking(t_philo_data *philo_data);
+void	eat(t_philo_data *philo_data);
+void	sleep(t_philo_data *philo_data);
 
 int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **argv);
 int	main(int	argc, char **argv);
@@ -49,5 +62,6 @@ int	ft_check_zero(t_philo *philo, int argc);
 int	ft_init_thread_data(t_philo *philo, t_philo_data **philo_data);
 
 long ft_atol(char *str);
+long	get_time(void);
 
 #endif
