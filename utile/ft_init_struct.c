@@ -29,7 +29,7 @@ int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **a
 		return (EXIT_FAILURE);
 	if ((ft_init_thread_data(philo, philo_data)) > 0)
 		return (EXIT_FAILURE);
-	if ((ft_check_zero(philo, argc)) > 0)
+	if ((ft_check_zero(philo)) > 0)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

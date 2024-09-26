@@ -12,23 +12,20 @@
 
 #include "../philo.h"
 
-void	ft_check_thread(void *data)
+int	ft_check_thread(t_philo *philo, t_philo_data *philo_data)
 {
-	t_philo	*philo;
 	int		i;
 
 	i = 0;
-	philo = (t_philo *)data;
 	while (1)
 	{
 		i = 0;
 		while (i < philo->nbr_philo)
 		{
-			if (philo->philo_data[i].die == 1)
+			if (philo_data[i].die == 1)
 			{
-				die(philo, i);
-				ft_all_die(philo);
-				return ;
+				die(philo, philo_data, i);
+				return (1) ;
 			}
 			i++;
 		}

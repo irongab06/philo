@@ -29,11 +29,9 @@ typedef struct s_philo
 	long	timer_start;
 	int		die;
 	pthread_mutex_t	*mutex;
-	pthread_mutex_t mutex_for_die;
+	//pthread_mutex_t mutex_for_die;
 	pthread_mutex_t mutex_for_printf;
 	pthread_t	*thread;
-	pthread_t	check_thread;
-	t_philo_data	*philo_data;
 }			t_philo;
 
 typedef struct s_philo_data
@@ -54,10 +52,12 @@ void	check_die(t_philo_data *philo_data);
 void	init_die(t_philo_data *philo_data);
 void	thinking(t_philo_data *philo_data);
 void	eat(t_philo_data *philo_data);
-void	sleep(t_philo_data *philo_data);
-void	ft_check_thread(void *data);
-void	die(t_philo *philo, int i);
+void	ft_sleep(t_philo_data *philo_data);
+int		ft_check_thread(t_philo *philo, t_philo_data *philo_data);
+void	die(t_philo *philo, t_philo_data *philo_data, int i);
 void	ft_lock_odd(t_philo_data *philo_data);
+void	ft_all_die(t_philo *philo, t_philo_data *philo_data);
+void	ft_lock_even(t_philo_data *philo_data);
 
 int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **argv);
 int	main(int	argc, char **argv);
@@ -65,10 +65,10 @@ int	ft_check_argv(char *str);
 int	ft_check(int argc, char **argv);
 int	ft_init_mutex(t_philo *philo);
 int	ft_init_thread(t_philo *philo);
-int	ft_check_zero(t_philo *philo, int argc);
+int	ft_check_zero(t_philo *philo);
 int	ft_init_thread_data(t_philo *philo, t_philo_data **philo_data);
 
-long ft_atol(char *str);
+long 	ft_atol(char *str);
 long	get_time(void);
 
 #endif

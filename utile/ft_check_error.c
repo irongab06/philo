@@ -35,12 +35,12 @@ int	ft_check_argv(char *str)
 	{
 		if (str[i] == '-')
 		{
-			printf("negative value ERROR");
+			printf("negative value ERROR\n");
 			return (EXIT_FAILURE);
 		}
-		if (str[i] >= 48 && str[i] <= 57)
+		if (str[i] <= 48 && str[i] >= 57)
 		{
-			printf("is not a valid digit");
+			printf("is not a valid digit\n");
 			return (EXIT_FAILURE);
 		}
 		i++;
@@ -48,7 +48,7 @@ int	ft_check_argv(char *str)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_check_zero(t_philo *philo, int argc)
+int	ft_check_zero(t_philo *philo)
 {
 	if (philo->time_to_die == 0)
 	{

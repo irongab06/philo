@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 			pthread_mutex_init(&philo.mutex[i], NULL);
 			i++;
 		}
-		pthread_mutex_init(&philo.mutex_for_die, NULL);
+		//pthread_mutex_init(&philo.mutex_for_die, NULL);
 		pthread_mutex_init(&philo.mutex_for_printf, NULL);
 		i = 0;
 		philo.timer_start = get_time();
@@ -57,8 +57,10 @@ int	main(int argc, char **argv)
 				pthread_create(&philo.thread[i], NULL, ft_philo, &philo_data[i]);
 			i++;
 		}
-		philo.philo_data = &philo_data; //init;
-		pthread_create(&philo.check_thread, NULL, ft_check_thread, &philo);
+		if ((ft_check_thread(&philo, philo_data)) > 0)
+		{
+			return (0);
+		}
 		i = 0;
 		while (i < philo.nbr_philo)
 		{
@@ -71,7 +73,7 @@ int	main(int argc, char **argv)
 			pthread_mutex_destroy(&philo.mutex[i]);
 			i++;
 		}
-		pthread_mutex_destroy(&philo.mutex_for_die);
+		//pthread_mutex_destroy(&philo.mutex_for_die);
 		pthread_mutex_destroy(&philo.mutex_for_printf);
 	}
 	return (0);

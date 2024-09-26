@@ -19,7 +19,7 @@ void	thinking(t_philo_data *philo_data)
 	time_thinking = get_time();
 	time_thinking -= philo_data->philo->timer_start;
 	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-	printf("%ld %d is thinking\n", time_thinking, philo_data->id);
+	printf("\033[38;2;255;182;193m%ld %d is thinking\033[0m\n", time_thinking, philo_data->id);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
 	check_die(philo_data);
 	return ; 
@@ -32,7 +32,7 @@ void	eat(t_philo_data *philo_data)
 	time_eat = get_time();
 	time_eat -= philo_data->philo->timer_start;
 	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-	printf("%ld %d is eating\n", time_eat, philo_data->id);
+	printf("\033[1;32m%ld %d is eating\033[0m\n", time_eat, philo_data->id);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
 	usleep(philo_data->philo->time_to_eat * 1000);
 	check_die(philo_data);
@@ -40,14 +40,14 @@ void	eat(t_philo_data *philo_data)
 	return ;
 }
 
-void	sleep(t_philo_data *philo_data)
+void	ft_sleep(t_philo_data *philo_data)
 {
 	long	time_sleep;
 
 	time_sleep = get_time();
 	time_sleep -= philo_data->philo->timer_start;
 	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-	printf("%ld %d is sleeping\n", time_sleep, philo_data->id);
+	printf("\033[1;34m%ld %d is sleeping\033[0m\n", time_sleep, philo_data->id);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
 	usleep(philo_data->philo->time_to_sleep * 1000);
 	check_die(philo_data);
