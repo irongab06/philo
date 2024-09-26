@@ -12,6 +12,15 @@
 
 #include "../philo.h"
 
+/*
+	penser a mettre un message d erreur si le nombre d argument n est pas bon 
+	penser a ajouter les printf de prise de fourchette
+	penser a gerer l option supplementaire.
+	faire le makefile
+	effectuer les free et les destroys
+	mettre a la norme
+*/
+
 int	main(int argc, char **argv)
 {
 	t_philo	philo;
@@ -32,7 +41,6 @@ int	main(int argc, char **argv)
 			pthread_mutex_init(&philo.mutex[i], NULL);
 			i++;
 		}
-		//pthread_mutex_init(&philo.mutex_for_die, NULL);
 		pthread_mutex_init(&philo.mutex_for_printf, NULL);
 		i = 0;
 		philo.timer_start = get_time();
@@ -73,7 +81,6 @@ int	main(int argc, char **argv)
 			pthread_mutex_destroy(&philo.mutex[i]);
 			i++;
 		}
-		//pthread_mutex_destroy(&philo.mutex_for_die);
 		pthread_mutex_destroy(&philo.mutex_for_printf);
 	}
 	return (0);

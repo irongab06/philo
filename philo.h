@@ -29,7 +29,6 @@ typedef struct s_philo
 	long	timer_start;
 	int		die;
 	pthread_mutex_t	*mutex;
-	//pthread_mutex_t mutex_for_die;
 	pthread_mutex_t mutex_for_printf;
 	pthread_t	*thread;
 }			t_philo;

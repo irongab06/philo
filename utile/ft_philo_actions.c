@@ -31,12 +31,12 @@ void	eat(t_philo_data *philo_data)
 
 	time_eat = get_time();
 	time_eat -= philo_data->philo->timer_start;
+	init_die(philo_data);
 	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
 	printf("\033[1;32m%ld %d is eating\033[0m\n", time_eat, philo_data->id);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
 	usleep(philo_data->philo->time_to_eat * 1000);
 	check_die(philo_data);
-	init_die(philo_data);
 	return ;
 }
 
