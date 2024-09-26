@@ -19,6 +19,8 @@
 	faire le makefile
 	effectuer les free et les destroys
 	mettre a la norme
+	gerer avec 1 philo
+	ou deux
 */
 
 int	main(int argc, char **argv)
