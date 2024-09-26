@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:57 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/24 14:58:01 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:55:00 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ typedef struct s_philo
 	int		die;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t mutex_for_die;
+	pthread_mutex_t mutex_for_printf;
 	pthread_t	*thread;
+	pthread_t	check_thread;
+	t_philo_data	*philo_data;
 }			t_philo;
 
 typedef struct s_philo_data
 {
-	int	id;
+	int		id;
+	int		die;
 	long	eat_time;
 	long	sleep_time;
 	long	die_time;
@@ -51,6 +55,9 @@ void	init_die(t_philo_data *philo_data);
 void	thinking(t_philo_data *philo_data);
 void	eat(t_philo_data *philo_data);
 void	sleep(t_philo_data *philo_data);
+void	ft_check_thread(void *data);
+void	die(t_philo *philo, int i);
+void	ft_lock_odd(t_philo_data *philo_data);
 
 int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **argv);
 int	main(int	argc, char **argv);

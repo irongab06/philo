@@ -1,3 +1,4 @@
+
 #include "../philo.h"
 
 long	get_time(void)

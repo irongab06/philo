@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_philo_actions.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 11:38:26 by gacavali          #+#    #+#             */
+/*   Updated: 2024/09/26 11:38:29 by gacavali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../philo.h"
 
 void	thinking(t_philo_data *philo_data)
@@ -6,7 +18,9 @@ void	thinking(t_philo_data *philo_data)
 
 	time_thinking = get_time();
 	time_thinking -= philo_data->philo->timer_start;
+	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
 	printf("%ld %d is thinking\n", time_thinking, philo_data->id);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
 	check_die(philo_data);
 	return ; 
 }
@@ -17,8 +31,10 @@ void	eat(t_philo_data *philo_data)
 
 	time_eat = get_time();
 	time_eat -= philo_data->philo->timer_start;
+	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
 	printf("%ld %d is eating\n", time_eat, philo_data->id);
-	usleep(philo_data->philo->time_to_eat);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
+	usleep(philo_data->philo->time_to_eat * 1000);
 	check_die(philo_data);
 	init_die(philo_data);
 	return ;
@@ -30,8 +46,10 @@ void	sleep(t_philo_data *philo_data)
 
 	time_sleep = get_time();
 	time_sleep -= philo_data->philo->timer_start;
+	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
 	printf("%ld %d is sleeping\n", time_sleep, philo_data->id);
-	usleep(philo_data->philo->time_to_sleep);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
+	usleep(philo_data->philo->time_to_sleep * 1000);
 	check_die(philo_data);
 	return ;
 }

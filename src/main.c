@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:53 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/24 12:27:06 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:28:12 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_philo	philo;
 	t_philo_data	*philo_data;
+
 	int	i;
 
 	i = 0;
@@ -32,6 +33,7 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		pthread_mutex_init(&philo.mutex_for_die, NULL);
+		pthread_mutex_init(&philo.mutex_for_printf, NULL);
 		i = 0;
 		philo.timer_start = get_time();
 		while (i < philo.nbr_philo)
@@ -47,7 +49,7 @@ int	main(int argc, char **argv)
 				pthread_create(&philo.thread[i], NULL, ft_philo, &philo_data[i]);
 			i++;
 		}
-		usleep(10);
+		usleep(100);
 		i = 0;
 		while(i < philo.nbr_philo)
 		{
@@ -55,6 +57,8 @@ int	main(int argc, char **argv)
 				pthread_create(&philo.thread[i], NULL, ft_philo, &philo_data[i]);
 			i++;
 		}
+		philo.philo_data = &philo_data; //init;
+		pthread_create(&philo.check_thread, NULL, ft_check_thread, &philo);
 		i = 0;
 		while (i < philo.nbr_philo)
 		{
@@ -68,7 +72,7 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		pthread_mutex_destroy(&philo.mutex_for_die);
-		
+		pthread_mutex_destroy(&philo.mutex_for_printf);
 	}
 	return (0);
 }
