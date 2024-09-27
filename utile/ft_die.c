@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:13 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/26 14:57:06 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:59:19 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	die(t_philo *philo, t_philo_data *philo_data, int i)
 
 	time_die = get_time();
 	time_die -= philo->timer_start;
-	pthread_mutex_lock(&philo->mutex_for_printf);
-	printf("\033[1;31m%ld %d died\033[0m\n", time_die, philo_data[i].id);
-	pthread_mutex_unlock(&philo->mutex_for_printf);
+	// pthread_mutex_lock(&philo->mutex_for_printf);
+	// printf("\033[1;31m%ld %d died\033[0m\n", time_die, philo_data[i].id);
+	// pthread_mutex_unlock(&philo->mutex_for_printf);
+	ft_printf(&philo_data[i], 3, time_die);
 	return ;
 }
 
