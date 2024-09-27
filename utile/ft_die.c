@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:13 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/27 11:59:19 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:08:47 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_die(t_philo_data *philo_data)
 
 	philo_data->philo_time_end = get_time();
 	result_time = philo_data->philo_time_end - philo_data->philo_time_start;
-	if (result_time >= philo_data->philo->time_to_die)
+	if (result_time > philo_data->philo->time_to_die)
 	{
 		philo_data->die = 1;
 	}	

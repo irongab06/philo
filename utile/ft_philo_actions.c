@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:26 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/27 11:48:59 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:09:48 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ void	eat(t_philo_data *philo_data)
 
 	time_eat = get_time();
 	time_eat -= philo_data->philo->timer_start;
-	init_die(philo_data);
-	// pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-	// printf("\033[1;32m%ld %d is eating\033[0m\n", time_eat, philo_data->id);
-	// pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
-	ft_printf(philo_data, 1, time_eat);
-	usleep(philo_data->philo->time_to_eat * 1000);
 	check_die(philo_data);
+	if (philo_data->die == 0)
+	{
+		init_die(philo_data);
+		// pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
+		// printf("\033[1;32m%ld %d is eating\033[0m\n", time_eat, philo_data->id);
+		// pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
+		ft_printf(philo_data, 1, time_eat);
+		usleep(philo_data->philo->time_to_eat * 1000);
+		check_die(philo_data);
+	}	
 	return ;
 }
 
