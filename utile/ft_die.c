@@ -14,33 +14,40 @@
 
 void	init_die(t_philo_data *philo_data)
 {
+	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	philo_data->die_time = philo_data->philo->time_to_die;
 	philo_data->philo_time_start = get_time();
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	return ;
 }
 
 void	check_die(t_philo_data *philo_data)
 {
-	long	result_time;
-
-	philo_data->philo_time_end = get_time();
-	result_time = philo_data->philo_time_end - philo_data->philo_time_start;
-	if (result_time > philo_data->philo->time_to_die)
+	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
+	if (philo_data->die == 0)
 	{
-		philo_data->die = 1;
+		long	result_time;
+
+		philo_data->philo_time_end = get_time();
+		result_time = philo_data->philo_time_end - philo_data->philo_time_start;
+		if (result_time > philo_data->philo->time_to_die)
+		{
+			philo_data->die = 1;
+		}
 	}	
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	return ;
 }
 
 void	die(t_philo *philo, t_philo_data *philo_data, int i)
 {
+	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	long	time_die;
 
 	time_die = get_time();
 	time_die -= philo->timer_start;
-	// pthread_mutex_lock(&philo->mutex_for_printf);
-	// printf("\033[1;31m%ld %d died\033[0m\n", time_die, philo_data[i].id);
-	// pthread_mutex_unlock(&philo->mutex_for_printf);
+	ft_all_die(philo, philo_data);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	ft_printf(&philo_data[i], 3, time_die);
 	return ;
 }
@@ -53,6 +60,7 @@ void	ft_all_die(t_philo *philo, t_philo_data *philo_data)
 	while (i < philo->nbr_philo)
 	{
 		philo_data[i].die = 1;
+		i++;
 	}
 	return ;
 

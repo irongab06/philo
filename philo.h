@@ -30,6 +30,7 @@ typedef struct s_philo
 	int		die;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t mutex_for_printf;
+	pthread_mutex_t mutex_for_die_check;
 	pthread_t	*thread;
 }			t_philo;
 
@@ -54,7 +55,8 @@ void	eat(t_philo_data *philo_data);
 void	ft_sleep(t_philo_data *philo_data);
 int		ft_check_thread(t_philo *philo, t_philo_data *philo_data);
 void	die(t_philo *philo, t_philo_data *philo_data, int i);
-void	ft_lock_odd(t_philo_data *philo_data);
+void ft_lock_odd(t_philo_data *philo_data);
+void NewFunction(t_philo_data *philo_data);
 void	ft_all_die(t_philo *philo, t_philo_data *philo_data);
 void	ft_printf(t_philo_data *philo_data, int i, long time);
 

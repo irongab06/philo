@@ -22,6 +22,7 @@ int	ft_check_thread(t_philo *philo, t_philo_data *philo_data)
 		i = 0;
 		while (i < philo->nbr_philo)
 		{
+			check_die(&philo_data[i]);
 			if (philo_data[i].die == 1)
 			{
 				die(philo, philo_data, i);

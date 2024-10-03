@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		pthread_mutex_init(&philo.mutex_for_printf, NULL);
+		pthread_mutex_init(&philo.mutex_for_die_check, NULL);
 		i = 0;
 		philo.timer_start = get_time();
 		while (i < philo.nbr_philo)
@@ -56,7 +57,10 @@ int	main(int argc, char **argv)
 		while(i < philo.nbr_philo)
 		{
 			if (philo_data[i].id % 2 != 0)
+			{
+				init_die(&philo_data[i]);
 				pthread_create(&philo.thread[i], NULL, ft_philo, &philo_data[i]);
+			}
 			i++;
 		}
 		usleep(100);
@@ -64,7 +68,10 @@ int	main(int argc, char **argv)
 		while(i < philo.nbr_philo)
 		{
 			if (philo_data[i].id % 2 == 0)
-				pthread_create(&philo.thread[i], NULL, ft_philo, &philo_data[i]);
+			{
+				init_die(&philo_data[i]);
+				pthread_create(&philo.thread[i], NULL, ft_philo, &philo_data[i]);\
+			}
 			i++;
 		}
 		if ((ft_check_thread(&philo, philo_data)) > 0)
