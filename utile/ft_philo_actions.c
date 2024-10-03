@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:26 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/27 12:09:48 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:30:55 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	eat(t_philo_data *philo_data)
 		init_die(philo_data);
 		ft_printf(philo_data, 1, time_eat);
 		usleep(philo_data->philo->time_to_eat * 1000);
-		check_die(philo_data);
-	}	
+		//check_die(philo_data);
+	}
 	return ;
 }
 

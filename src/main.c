@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:53 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/26 14:28:12 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:42:57 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,22 @@ int	main(int argc, char **argv)
 		}
 		if ((ft_check_thread(&philo, philo_data)) > 0)
 		{
+			i = 0;
+			while (i < philo.nbr_philo)
+			{
+				pthread_join(philo.thread[i],NULL);
+				i++;
+			}
+			i = 0;
+			while (i < philo.nbr_philo)
+			{
+				pthread_mutex_destroy(&philo.mutex[i]);
+				i++;
+			}
+			pthread_mutex_destroy(&philo.mutex_for_printf);
+			pthread_mutex_destroy(&philo.mutex_for_die_check);
 			return (0);
 		}
-		i = 0;
-		while (i < philo.nbr_philo)
-		{
-			pthread_join(philo.thread[i],NULL);
-			i++;
-		}
-		i = 0;
-		while (i < philo.nbr_philo)
-		{
-			pthread_mutex_destroy(&philo.mutex[i]);
-			i++;
-		}
-		pthread_mutex_destroy(&philo.mutex_for_printf);
 	}
 	return (0);
 }

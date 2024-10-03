@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:13 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/27 12:08:47 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:35:52 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_die(t_philo_data *philo_data)
 
 void	check_die(t_philo_data *philo_data)
 {
-	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
+	//pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	if (philo_data->die == 0)
 	{
 		long	result_time;
@@ -35,7 +35,7 @@ void	check_die(t_philo_data *philo_data)
 			philo_data->die = 1;
 		}
 	}	
-	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+	//pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 10:55:51 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/27 11:53:09 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:40:45 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,18 @@
 
 void	ft_printf(t_philo_data *philo_data, int i, long time)
 {
+	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
+	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
 	if (i == 0 && philo_data->die == 0)
-	{
-		pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-		printf("\e[38;2;255;182;193m%ld %d is thinking\033[0m\n", time, philo_data->id);
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
-	}	
+		printf("\033[1;49;93m%ld %d is thinking\033[0m\n", time, philo_data->id);
 	else if (i == 1 && philo_data->die == 0)
-	{
-		pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-		printf("\033[1;32m%ld %d is eating\033[0m\n", time, philo_data->id);
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
-	}
+		printf("\033[4;49;92m%ld %d is eating\033[0m\n", time, philo_data->id);
 	else if (i == 2 && philo_data->die == 0)
-	{
-		pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-		printf("\033[1;34m%ld %d is sleeping\033[0m\n", time, philo_data->id);
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
-	}	
+		printf("\033[4;49;36m%ld %d is sleeping\033[0m\n", time, philo_data->id);
+	else if (i == 4 && philo_data->die == 0)
+		printf("\033[1;33m%ld %d has taken a fork\033[0m\n", time, philo_data->id);
 	else if (i == 3 && philo_data->die == 1)
-	{
-		pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
-		printf("\033[1;31m%ld %d died\033[0m\n", time, philo_data->id);
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
-	}	
+		printf("\033[7;31m%ld %d died\033[0m\n", time, philo_data->id);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_printf);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 }
