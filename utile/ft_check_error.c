@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:10:24 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/24 15:08:14 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:50:26 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_check_argv(char *str)
 	}
 	return (EXIT_SUCCESS);
 }
-
+ 
 int	ft_check_zero(t_philo *philo)
 {	int	inter;
 

@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:13 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/03 11:35:52 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:02:26 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	check_die(t_philo_data *philo_data)
 	{
 		long	result_time;
 
+		result_time = 0;
 		philo_data->philo_time_end = get_time();
 		result_time = philo_data->philo_time_end - philo_data->philo_time_start;
 		if (result_time > philo_data->philo->time_to_die)
@@ -44,6 +45,7 @@ void	die(t_philo *philo, t_philo_data *philo_data, int i)
 	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	long	time_die;
 
+	time_die = 0;
 	time_die = get_time();
 	time_die -= philo->timer_start;
 	ft_all_die(philo, philo_data);

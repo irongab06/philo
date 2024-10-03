@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:53 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/03 11:42:57 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:58:48 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	main(int argc, char **argv)
 			}
 			pthread_mutex_destroy(&philo.mutex_for_printf);
 			pthread_mutex_destroy(&philo.mutex_for_die_check);
+			ft_free(&philo, philo_data);
 			return (0);
 		}
 	}

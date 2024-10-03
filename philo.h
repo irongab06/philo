@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:57 by gacavali          #+#    #+#             */
-/*   Updated: 2024/09/27 11:42:12 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:59:28 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	ft_sleep(t_philo_data *philo_data);
 int		ft_check_thread(t_philo *philo, t_philo_data *philo_data);
 void	die(t_philo *philo, t_philo_data *philo_data, int i);
 void ft_lock_odd(t_philo_data *philo_data);
-void NewFunction(t_philo_data *philo_data);
 void	ft_all_die(t_philo *philo, t_philo_data *philo_data);
 void	ft_printf(t_philo_data *philo_data, int i, long time);
+void	ft_free(t_philo *thread, t_philo_data *philo_data);
 
 //void	ft_lock_even(t_philo_data *philo_data);
 
