@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:26 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/03 11:30:55 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:57:02 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,22 @@ void	thinking(t_philo_data *philo_data)
 	time_thinking = get_time();
 	time_thinking -= philo_data->philo->timer_start;	
 	ft_printf(philo_data, 0, time_thinking);
-	return ; 
+	//usleep(20);
+	return ;   
+}
+
+void ft_usleep(long wait)
+{
+	long time;
+	long tmp;
+
+	time = get_time() + wait;
+	tmp = get_time();
+	while(tmp < time)
+	{
+		usleep(100);
+		tmp = get_time();
+	}
 }
 
 void	eat(t_philo_data *philo_data)
@@ -33,7 +48,7 @@ void	eat(t_philo_data *philo_data)
 	{
 		init_die(philo_data);
 		ft_printf(philo_data, 1, time_eat);
-		usleep(philo_data->philo->time_to_eat * 1000);
+		ft_usleep(philo_data->philo->time_to_eat);
 		//check_die(philo_data);
 	}
 	return ;
@@ -46,6 +61,6 @@ void	ft_sleep(t_philo_data *philo_data)
 	time_sleep = get_time();
 	time_sleep -= philo_data->philo->timer_start;
 	ft_printf(philo_data, 2, time_sleep);
-	usleep(philo_data->philo->time_to_sleep * 1000);
+	ft_usleep(philo_data->philo->time_to_sleep);
 	return ;
 }
