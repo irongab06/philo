@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:13:37 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/03 11:33:13 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:33:40 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_check_thread(t_philo *philo, t_philo_data *philo_data)
 {
 	int		i;
 
-	i = 0;
 	while (1)
 	{
 		i = 0;
@@ -24,13 +23,23 @@ int	ft_check_thread(t_philo *philo, t_philo_data *philo_data)
 		{
 			pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 			check_die(&philo_data[i]);
+			pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
+			if (check_eat_all(philo, philo_data) == 1 && philo->nbr_eat_philo > 0)
+			{
+				pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+				ft_all_eat(philo, philo_data);
+				pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
+				return (1);
+			}	
 			if (philo_data[i].die == 1)
 			{
 				pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+				pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 				die(philo, philo_data, i);
-				return (1) ;
+				return (1);
 			}
 			pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+			pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 			i++;
 		}
 	}

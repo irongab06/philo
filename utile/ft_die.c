@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:38:13 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/03 17:57:34 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:31:33 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_die(t_philo_data *philo_data)
 
 void	check_die(t_philo_data *philo_data)
 {
-	//pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	if (philo_data->die == 0)
 	{
 		long	result_time;
@@ -36,7 +35,6 @@ void	check_die(t_philo_data *philo_data)
 			philo_data->die = 1;
 		}
 	}	
-	//pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	return ;
 }
 
@@ -66,4 +64,19 @@ void	ft_all_die(t_philo *philo, t_philo_data *philo_data)
 	}
 	return ;
 
+}
+
+int	ft_check_die_value(t_philo_data *philo_data)
+{
+		pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
+		pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
+		if (philo_data->die == 1 || philo_data->all_eat == 1)
+		{
+			pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+			pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
+			return (1);
+		}
+		pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+		pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
+		return (0);
 }

@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philo.c                                         :+:      :+:    :+:   */
+/*   ft_check_eat_all.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 14:02:09 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/04 09:53:33 by gacavali         ###   ########.fr       */
+/*   Created: 2024/10/04 10:27:10 by gacavali          #+#    #+#             */
+/*   Updated: 2024/10/04 11:29:36 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	*ft_philo(void *data)
+int	check_eat_all(t_philo *philo, t_philo_data *philo_data)
 {
-	t_philo_data 	*philo_data;
+	int i;
 
-	philo_data = (t_philo_data*)data;
-	while (1)
+	i = 0;
+	while (i < philo->nbr_philo)
 	{
-		if ((ft_check_die_value(philo_data)) == 1)
-			break;
-		thinking(philo_data);
-		if ((ft_check_die_value(philo_data)) == 1)
-			break;
-		ft_lock_odd(philo_data);
-		if ((ft_check_die_value(philo_data)) == 1)
-			break;
-		ft_sleep(philo_data);
+		if (philo_data[i].eat < philo->nbr_eat_philo)
+			return (0);
+		i++;
 	}
-	return (NULL);
+	return (1);
 }
 
+void	ft_all_eat(t_philo *philo, t_philo_data *philo_data)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->nbr_philo)
+	{
+		philo_data[i].all_eat = 1;
+		i++;
+	}
+	return ;
+}
