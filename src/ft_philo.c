@@ -25,6 +25,8 @@ void	*ft_philo(void *data)
 		if ((ft_check_die_value(philo_data)) == 1)
 			break;
 		ft_lock_odd(philo_data);
+		if (philo_data->philo->nbr_philo == 1)
+			return (NULL);
 		if ((ft_check_die_value(philo_data)) == 1)
 			break;
 		ft_sleep(philo_data);

@@ -57,6 +57,11 @@ void	ft_lock_odd(t_philo_data *philo_data)
 		time_fork_left = get_time();
 		time_fork_left -= philo_data->philo->timer_start;
 		ft_printf(philo_data, 4, time_fork_left);
+		if (philo_data->philo->nbr_philo == 1)
+		{
+			pthread_mutex_unlock(&philo_data->philo->mutex[philo_data->id - 1]);
+			return ;
+		}
 		pthread_mutex_lock(&philo_data->philo->mutex[0]);
 		time_fork_right = get_time();
 		time_fork_right -= philo_data->philo->timer_start;
