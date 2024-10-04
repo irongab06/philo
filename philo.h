@@ -64,6 +64,7 @@ void	ft_printf(t_philo_data *philo_data, int i, long time);
 void	ft_free(t_philo *thread, t_philo_data *philo_data);
 void	ft_create_philo(t_philo *philo, t_philo_data *philo_data);
 void	ft_all_eat(t_philo *philo, t_philo_data *philo_data);
+void	ft_init_lock(t_philo_data *philo_data, int *right_fork , int *left_fork);
 
 //void	ft_lock_even(t_philo_data *philo_data);
 
