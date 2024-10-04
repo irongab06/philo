@@ -17,10 +17,10 @@ void	ft_lock_odd(t_philo_data *philo_data)
 	int	inter;
 	long	time_fork_left;
 	long	time_fork_right;
-	int right_fork_index;
+	//int right_fork_index;
 	int left_fork_index;
 
-	right_fork_index = philo_data->id;
+	//right_fork_index = philo_data->id;
 	left_fork_index = philo_data->id - 1;
 	if (left_fork_index < 0)
 		left_fork_index = 0;

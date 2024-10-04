@@ -23,15 +23,20 @@ void	thinking(t_philo_data *philo_data)
 	return ;   
 }
 
-void ft_usleep(long wait)
+void ft_usleep(t_philo_data *philo_data, int i)
 {
 	long time;
 	long tmp;
 
-	time = get_time() + wait;
+	if (i == 1)
+		time = get_time() + philo_data->philo->time_to_eat;
+	if (i == 2)
+		time = get_time() + philo_data->philo->time_to_sleep;
 	tmp = get_time();
 	while(tmp < time)
 	{
+		if ((ft_check_die_value(philo_data)) > 0)
+			return ;
 		usleep(100);
 		tmp = get_time();
 	}
@@ -52,7 +57,7 @@ void	eat(t_philo_data *philo_data)
 			
 		// }
 		ft_printf(philo_data, 1, time_eat);
-		ft_usleep(philo_data->philo->time_to_eat);
+		ft_usleep(philo_data, 1);
 	}
 	return ;
 }
@@ -64,6 +69,6 @@ void	ft_sleep(t_philo_data *philo_data)
 	time_sleep = get_time();
 	time_sleep -= philo_data->philo->timer_start;
 	ft_printf(philo_data, 2, time_sleep);
-	ft_usleep(philo_data->philo->time_to_sleep);
+	ft_usleep(philo_data, 2);
 	return ;
 }
