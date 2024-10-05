@@ -19,13 +19,18 @@
 void	ft_printf(t_philo_data *philo_data, int i, long time)
 {
 	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
+	if (i == 1 && philo_data->die == 0)
+	{
+		pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
+		if (philo_data->philo->nbr_eat_philo > 0)
+			philo_data->eat += 1; //ici eat philo
+		pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
+	}	
 	pthread_mutex_lock(&philo_data->philo->mutex_for_printf);
 	if (i == 0 && philo_data->die == 0)
 		printf("\033[1;49;93m%ld %d is thinking\033[0m\n", time, philo_data->id);
 	else if (i == 1 && philo_data->die == 0)
 	{
-		if (philo_data->philo->nbr_eat_philo > 0)
-			philo_data->eat += 1; //ici eat philo
 		printf("\033[4;49;92m%ld %d is eating\033[0m\n", time, philo_data->id);
 	}
 	else if (i == 2 && philo_data->die == 0)

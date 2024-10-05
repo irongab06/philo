@@ -32,6 +32,7 @@ typedef struct s_philo
 	pthread_mutex_t	mutex_for_printf;
 	pthread_mutex_t	mutex_for_die_check;
 	pthread_mutex_t	mutex_for_eat_check;
+	pthread_mutex_t	mutex_for_time;
 	pthread_t	*thread;
 }			t_philo;
 

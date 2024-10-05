@@ -31,6 +31,7 @@ int	ft_init_mutex(t_philo *philo)
 	pthread_mutex_init(&philo->mutex_for_printf, NULL);
 	pthread_mutex_init(&philo->mutex_for_die_check, NULL);
 	pthread_mutex_init(&philo->mutex_for_eat_check, NULL);
+	pthread_mutex_init(&philo->mutex_for_time, NULL);
 	return (EXIT_SUCCESS);
 }
 

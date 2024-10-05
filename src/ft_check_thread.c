@@ -21,25 +21,20 @@ int	ft_check_thread(t_philo *philo, t_philo_data *philo_data)
 		i = 0;
 		while (i < philo->nbr_philo)
 		{
-			pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 			check_die(&philo_data[i]);
-			pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
 			if (check_eat_all(philo, philo_data) == 1 && philo->nbr_eat_philo > 0)
 			{
-				pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 				ft_all_eat(philo, philo_data);
-				pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 				return (1);
-			}	
+			}
+			pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 			if (philo_data[i].die == 1)
 			{
 				pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
-				pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 				die(philo, philo_data, i);
 				return (1);
 			}
 			pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
-			pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 			i++;
 		}
 	}

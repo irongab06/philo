@@ -88,7 +88,9 @@ void	ft_lock_odd(t_philo_data *philo_data)
 	left_fork = 0;
 	ft_init_lock(philo_data, &right_fork, &left_fork);
 	pthread_mutex_lock(&philo_data->philo->mutex[left_fork]);
+	pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 	time_fork = get_time() - philo_data->philo->timer_start;
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	ft_printf(philo_data, 4, time_fork);
 	if (philo_data->philo->nbr_philo == 1)
 	{
@@ -96,12 +98,20 @@ void	ft_lock_odd(t_philo_data *philo_data)
 		return ;
 	}
 	pthread_mutex_lock(&philo_data->philo->mutex[right_fork]);
+	pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 	time_fork = get_time() - philo_data->philo->timer_start;
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	ft_printf(philo_data, 4, time_fork);
+	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	if (philo_data->die == 0)
+	{
+		pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 		eat(philo_data);
-	pthread_mutex_unlock(&philo_data->philo->mutex[left_fork]);
+	}
+	else
+		pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	pthread_mutex_unlock(&philo_data->philo->mutex[right_fork]);
+	pthread_mutex_unlock(&philo_data->philo->mutex[left_fork]);
 }
 
 void	ft_init_lock(t_philo_data *philo_data, int *right_fork , int *left_fork)
@@ -111,7 +121,7 @@ void	ft_init_lock(t_philo_data *philo_data, int *right_fork , int *left_fork)
 		*left_fork = philo_data->id - 1;
 		*right_fork = 0;
 	}
-	if (philo_data->id % 2 != 0)
+	else if (philo_data->id % 2 != 0)
 	{
 		*left_fork = philo_data->id - 1;
 		*right_fork = philo_data->id;
