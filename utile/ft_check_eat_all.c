@@ -38,9 +38,7 @@ void	ft_all_eat(t_philo *philo, t_philo_data *philo_data)
 	i = 0;
 	while (i < philo->nbr_philo)
 	{
-		pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
 		philo_data[i].all_eat = 1;
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 		i++;
 	}
 	return ;
