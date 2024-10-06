@@ -36,10 +36,12 @@ void	ft_all_eat(t_philo *philo, t_philo_data *philo_data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
 	while (i < philo->nbr_philo)
 	{
 		philo_data[i].all_eat = 1;
 		i++;
 	}
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 	return ;
 }

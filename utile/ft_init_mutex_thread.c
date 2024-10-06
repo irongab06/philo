@@ -94,7 +94,7 @@ void	ft_create_philo(t_philo *philo, t_philo_data *philo_data)
 		}
 		i++;
 	}
-	usleep(100);
+	usleep(10);
 	i = 0;
 	while(i < philo->nbr_philo)
 	{
