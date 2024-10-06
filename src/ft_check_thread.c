@@ -36,6 +36,7 @@ int	ft_check_thread(t_philo *philo, t_philo_data *philo_data)
 			}
 			pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 			i++;
+			usleep(100);
 		}
 	}
 }
