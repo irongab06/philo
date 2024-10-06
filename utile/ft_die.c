@@ -54,9 +54,9 @@ void	die(t_philo *philo, t_philo_data *philo_data, int i)
 	pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 	time_die = get_time();
 	time_die -= philo->timer_start;
+	ft_printf(&philo_data[i], 3, time_die);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	ft_all_die(philo, philo_data);
-	ft_printf(&philo_data[i], 3, time_die);
 	return ;
 }
 
