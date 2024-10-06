@@ -19,8 +19,8 @@ void	thinking(t_philo_data *philo_data)
 	pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 	time_thinking = get_time();
 	time_thinking -= philo_data->philo->timer_start;
-	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	ft_printf(philo_data, 0, time_thinking);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	//usleep(20);
 	return ;
 }
@@ -52,17 +52,10 @@ void	eat(t_philo_data *philo_data)
 	pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 	time_now = get_time();
 	time_eat = time_now - philo_data->philo->timer_start;
+	ft_printf(philo_data, 1, time_eat);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
-	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
-	if (philo_data->die == 0)
-	{
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
-		init_die(philo_data);
-		ft_printf(philo_data, 1, time_eat);
-		ft_usleep(philo_data, 1);
-	}
-	else
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+	init_die(philo_data);
+	ft_usleep(philo_data, 1);
 	return ;
 }
 
@@ -73,8 +66,8 @@ void	ft_sleep(t_philo_data *philo_data)
 	pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 	time_sleep = get_time();
 	time_sleep -= philo_data->philo->timer_start;
-	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	ft_printf(philo_data, 2, time_sleep);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	ft_usleep(philo_data, 2);
 	return ;
 }

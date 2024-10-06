@@ -26,15 +26,14 @@ void	check_die(t_philo_data *philo_data)
 	long	result_time;
 
 	result_time = 0;
+	pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	if (philo_data->die == 0)
 	{
 		//pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 
-		pthread_mutex_lock(&philo_data->philo->mutex_for_time);
 		philo_data->philo_time_end = get_time();
 		result_time = philo_data->philo_time_end - philo_data->philo_time_start;
-		pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 		if (result_time > philo_data->philo->time_to_die)
 		{
 		//	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
@@ -43,6 +42,7 @@ void	check_die(t_philo_data *philo_data)
 		}
 	}
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
 	return ;
 }
 
