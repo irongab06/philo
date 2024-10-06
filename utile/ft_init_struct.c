@@ -12,7 +12,8 @@
 
 #include "../philo.h"
 
-int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **argv)
+int	ft_init_struct(t_philo *philo, t_philo_data **philo_data,
+	int argc, char **argv)
 {
 	philo->nbr_philo = ft_atol(argv[1]);
 	philo->time_to_die = ft_atol(argv[2]);
@@ -34,8 +35,7 @@ int	ft_init_struct(t_philo *philo, t_philo_data **philo_data, int argc, char **a
 	return (EXIT_SUCCESS);
 }
 
-
-long ft_atol(char *str)
+long	ft_atol(char *str)
 {
 	long	i;
 	long	count;
@@ -62,4 +62,3 @@ long ft_atol(char *str)
 		number = number * 10 + (str[i++] - '0');
 	return (number * sign);
 }
-

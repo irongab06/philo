@@ -30,16 +30,10 @@ void	check_die(t_philo_data *philo_data)
 	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 	if (philo_data->die == 0)
 	{
-		//pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
-
 		philo_data->philo_time_end = get_time();
 		result_time = philo_data->philo_time_end - philo_data->philo_time_start;
 		if (result_time > philo_data->philo->time_to_die)
-		{
-		//	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
 			philo_data->die = 1;
-		//	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
-		}
 	}
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
@@ -73,20 +67,19 @@ void	ft_all_die(t_philo *philo, t_philo_data *philo_data)
 	}
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
 	return ;
-
 }
 
 int	ft_check_die_value(t_philo_data *philo_data)
 {
-		pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
-		pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
-		if (philo_data->die == 1 || philo_data->all_eat == 1)
-		{
-			pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
-			pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
-			return (1);
-		}
+	pthread_mutex_lock(&philo_data->philo->mutex_for_die_check);
+	pthread_mutex_lock(&philo_data->philo->mutex_for_eat_check);
+	if (philo_data->die == 1 || philo_data->all_eat == 1)
+	{
 		pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
 		pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
-		return (0);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_eat_check);
+	pthread_mutex_unlock(&philo_data->philo->mutex_for_die_check);
+	return (0);
 }

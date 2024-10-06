@@ -14,23 +14,22 @@
 
 void	*ft_philo(void *data)
 {
-	t_philo_data 	*philo_data;
+	t_philo_data	*philo_data;
 
-	philo_data = (t_philo_data*)data;
+	philo_data = (t_philo_data *)data;
 	while (1)
 	{
 		if ((ft_check_die_value(philo_data)) == 1)
-			break;
+			break ;
 		thinking(philo_data);
 		if ((ft_check_die_value(philo_data)) == 1)
-			break;
+			break ;
 		ft_lock_odd(philo_data);
 		if (philo_data->philo->nbr_philo == 1)
 			return (NULL);
 		if ((ft_check_die_value(philo_data)) == 1)
-			break;
+			break ;
 		ft_sleep(philo_data);
 	}
 	return (NULL);
 }
-

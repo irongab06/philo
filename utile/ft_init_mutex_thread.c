@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../philo.h"
+#include "../philo.h"
 
 int	ft_init_mutex(t_philo *philo)
 {
@@ -59,15 +59,7 @@ int	ft_init_thread_data(t_philo *philo, t_philo_data **philo_data)
 	}
 	while (i < philo->nbr_philo)
 	{
-		(*philo_data)[i].id = 0;
-		(*philo_data)[i].die = 0;
-		(*philo_data)[i].eat_time = 0;
-		(*philo_data)[i].sleep_time = 0;
-		(*philo_data)[i].die_time = 0;
-		(*philo_data)[i].philo_time_start = 0;
-		(*philo_data)[i].philo_time_end = 0;
-		(*philo_data)[i].eat = 0;
-		(*philo_data)[i].all_eat = 0;
+		ft_init_philo_data(philo_data, i);
 		i++;
 	}
 	i = 0;
@@ -85,7 +77,7 @@ void	ft_create_philo(t_philo *philo, t_philo_data *philo_data)
 	int	i;
 
 	i = 0;
-	while(i < philo->nbr_philo)
+	while (i < philo->nbr_philo)
 	{
 		if (philo_data[i].id % 2 != 0)
 		{
@@ -96,7 +88,7 @@ void	ft_create_philo(t_philo *philo, t_philo_data *philo_data)
 	}
 	usleep(10);
 	i = 0;
-	while(i < philo->nbr_philo)
+	while (i < philo->nbr_philo)
 	{
 		if (philo_data[i].id % 2 == 0)
 		{
@@ -105,4 +97,17 @@ void	ft_create_philo(t_philo *philo, t_philo_data *philo_data)
 		}
 		i++;
 	}
+}
+
+void	ft_init_philo_data(t_philo_data **philo_data, int i)
+{
+	(*philo_data)[i].id = 0;
+	(*philo_data)[i].die = 0;
+	(*philo_data)[i].eat_time = 0;
+	(*philo_data)[i].sleep_time = 0;
+	(*philo_data)[i].die_time = 0;
+	(*philo_data)[i].philo_time_start = 0;
+	(*philo_data)[i].philo_time_end = 0;
+	(*philo_data)[i].eat = 0;
+	(*philo_data)[i].all_eat = 0;
 }

@@ -21,21 +21,20 @@ void	thinking(t_philo_data *philo_data)
 	time_thinking -= philo_data->philo->timer_start;
 	ft_printf(philo_data, 0, time_thinking);
 	pthread_mutex_unlock(&philo_data->philo->mutex_for_time);
-	//usleep(20);
 	return ;
 }
 
-void ft_usleep(t_philo_data *philo_data, int i)
+void	ft_usleep(t_philo_data *philo_data, int i)
 {
-	long time;
-	long tmp;
+	long	time;
+	long	tmp;
 
 	if (i == 1)
 		time = get_time() + philo_data->philo->time_to_eat;
 	if (i == 2)
 		time = get_time() + philo_data->philo->time_to_sleep;
 	tmp = get_time();
-	while(tmp < time)
+	while (tmp < time)
 	{
 		if ((ft_check_die_value(philo_data)) > 0)
 			return ;

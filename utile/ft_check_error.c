@@ -42,32 +42,31 @@ int	ft_check_argv(char *str)
 	}
 	return (EXIT_SUCCESS);
 }
- 
-int	ft_check_zero(t_philo *philo)
-{	int	inter;
 
-	inter = 0;
+int	ft_check_zero(t_philo *philo)
+{
+	int	error;
+
+	error = 0;
 	if (philo->time_to_die == 0)
 	{
 		printf("bad duration for die\n");
-		inter = 1;
+		error = 1;
 	}
 	if (philo->time_to_eat == 0 || (philo->nbr_eat_philo == 0))
 	{
 		printf("bad duration for eat\n");
-		inter = 1;
+		error = 1;
 	}
 	if (philo->time_to_sleep == 0)
 	{
 		printf("bad duration for sleep\n");
-		inter = 1;
+		error = 1;
 	}
 	if (philo->nbr_philo == 0)
 	{
 		printf("wrong number of philo\n");
-		inter = 1;
+		error = 1;
 	}
-	if (inter == 1)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	return (error);
 }

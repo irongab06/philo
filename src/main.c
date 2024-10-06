@@ -12,39 +12,26 @@
 
 #include "../philo.h"
 
-/*
-	penser a mettre un message d erreur si le nombre d argument n est pas bon 
-	penser a ajouter les printf de prise de fourchette
-	penser a gerer l option supplementaire.
-	faire le makefile
-	effectuer les free et les destroys
-	mettre a la norme
-	gerer avec 1 philo
-	ou deux
-*/
-
 int	main(int argc, char **argv)
 {
-	t_philo	philo;
+	t_philo			philo;
 	t_philo_data	*philo_data;
-
-	int	i;
+	int				i;
 
 	i = 0;
 	if (argc >= 5 && argc < 7)
 	{
 		if ((ft_check(argc, argv)) > 0)
-			return (EXIT_FAILURE); 
+			return (EXIT_FAILURE);
 		if ((ft_init_struct(&philo, &philo_data, argc, argv)) > 0)
 			return (EXIT_FAILURE);
 		philo.timer_start = get_time();
-
 		ft_create_philo(&philo, philo_data);
 		if ((ft_check_thread(&philo, philo_data)) > 0)
 		{
 			while (i < philo.nbr_philo)
 			{
-				pthread_join(philo.thread[i],NULL);
+				pthread_join(philo.thread[i], NULL);
 				i++;
 			}
 			ft_free(&philo, philo_data);

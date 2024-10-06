@@ -12,9 +12,9 @@
 
 #include "../philo.h"
 
-int	check_eat_all(t_philo *philo, t_philo_data *philo_data)
+int	ck_eat_all(t_philo *philo, t_philo_data *philo_data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < philo->nbr_philo)

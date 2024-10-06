@@ -22,7 +22,7 @@ int	ft_check_thread(t_philo *philo, t_philo_data *philo_data)
 		while (i < philo->nbr_philo)
 		{
 			check_die(&philo_data[i]);
-			if (check_eat_all(philo, philo_data) == 1 && philo->nbr_eat_philo > 0)
+			if (ck_eat_all(philo, philo_data) == 1 && philo->nbr_eat_philo > 0)
 			{
 				ft_all_eat(philo, philo_data);
 				return (1);
