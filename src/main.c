@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc >= 5 && argc < 7)
 	{
-		if ((ft_check(argc, argv)) > 0)
-			return (EXIT_FAILURE);
+		// if ((ft_check(argc, argv)) > 0)
+		// 	return (EXIT_FAILURE);
 		if ((ft_init_struct(&philo, &philo_data, argc, argv)) > 0)
 		{
 			ft_free(&philo, philo_data);
