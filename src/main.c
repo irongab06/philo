@@ -24,7 +24,10 @@ int	main(int argc, char **argv)
 		if ((ft_check(argc, argv)) > 0)
 			return (EXIT_FAILURE);
 		if ((ft_init_struct(&philo, &philo_data, argc, argv)) > 0)
+		{
+			ft_free(&philo, philo_data);
 			return (EXIT_FAILURE);
+		}
 		philo.timer_start = get_time();
 		ft_create_philo(&philo, philo_data);
 		if ((ft_check_thread(&philo, philo_data)) > 0)
