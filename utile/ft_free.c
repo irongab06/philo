@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/10 08:33:47 by gacavali          #+#    #+#             */
+/*   Updated: 2024/10/10 08:33:48 by gacavali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../philo.h"
 
 void	ft_free(t_philo *philo, t_philo_data *philo_data)
@@ -13,14 +25,10 @@ void	ft_free(t_philo *philo, t_philo_data *philo_data)
 			i++;
 		}
 	}
-	if (&philo->mutex_for_printf)
-		pthread_mutex_destroy(&philo->mutex_for_printf);
-	if (&philo->mutex_for_die_check)
-		pthread_mutex_destroy(&philo->mutex_for_die_check);
-	if (&philo->mutex_for_eat_check)
-		pthread_mutex_destroy(&philo->mutex_for_eat_check);
-	if (&philo->mutex_for_time)
-		pthread_mutex_destroy(&philo->mutex_for_time);
+	pthread_mutex_destroy(&philo->mutex_for_printf);
+	pthread_mutex_destroy(&philo->mutex_for_die_check);
+	pthread_mutex_destroy(&philo->mutex_for_eat_check);
+	pthread_mutex_destroy(&philo->mutex_for_time);
 	if (philo->thread)
 		free(philo->thread);
 	if (philo->mutex)

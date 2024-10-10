@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:10:24 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/03 14:50:26 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:52:05 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_check_argv(char *str)
 	{
 		if (str[i] < 48 || str[i] > 57)
 		{
-			printf("is not a valid digit\n");
+			printf("%s is not a valid value\n", str + i);
 			return (EXIT_FAILURE);
 		}
 		i++;
@@ -50,22 +50,22 @@ int	ft_check_zero(t_philo *philo)
 	error = 0;
 	if (philo->time_to_die == 0)
 	{
-		printf("bad duration for die\n");
+		printf("Bad duration for die\n");
 		error = 1;
 	}
 	if (philo->time_to_eat == 0 || (philo->nbr_eat_philo == 0))
 	{
-		printf("bad duration for eat\n");
+		printf("Bad duration for eat\n");
 		error = 1;
 	}
 	if (philo->time_to_sleep == 0)
 	{
-		printf("bad duration for sleep\n");
+		printf("Bad duration for sleep\n");
 		error = 1;
 	}
 	if (philo->nbr_philo == 0)
 	{
-		printf("wrong number of philo\n");
+		printf("Wrong number of philo\n");
 		error = 1;
 	}
 	return (error);
