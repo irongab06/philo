@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=thread
 SRC = src/ft_check_thread.c src/ft_philo.c src/main.c\
 utile/ft_check_eat_all.c utile/ft_check_error.c utile/ft_die.c utile/ft_free.c\
 utile/ft_init_mutex_thread.c utile/ft_init_struct.c utile/ft_lock_unlock.c\

@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:10:24 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/10 08:52:05 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:04:27 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,23 @@
 int	ft_check(int argc, char **argv)
 {
 	int	i;
+	int	error;
 
 	i = 1;
+	error = 0;
+	if (argc < 5 || argc > 6)
+	{
+		printf("Wrong number of arguments\n");
+		return (EXIT_FAILURE);
+	}
 	while (i < argc)
 	{
-		if ((ft_check_argv(argv[i])) > 0)
-			return (EXIT_FAILURE);
+		error += ft_check_argv(argv[i]);
 		i++;
 	}
+	error += ft_check_zero(argv);
+	if (error > 0)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -43,27 +52,27 @@ int	ft_check_argv(char *str)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_check_zero(t_philo *philo)
+int	ft_check_zero(char **argv)
 {
 	int	error;
 
 	error = 0;
-	if (philo->time_to_die == 0)
+	if (ft_atol(argv[2]) == 0)
 	{
 		printf("Bad duration for die\n");
 		error = 1;
 	}
-	if (philo->time_to_eat == 0 || (philo->nbr_eat_philo == 0))
+	if (ft_atol(argv[3]) == 0 || (argv[5] && (ft_atol(argv[5]) == 0)))
 	{
 		printf("Bad duration for eat\n");
 		error = 1;
 	}
-	if (philo->time_to_sleep == 0)
+	if (ft_atol(argv[4]) == 0)
 	{
 		printf("Bad duration for sleep\n");
 		error = 1;
 	}
-	if (philo->nbr_philo == 0)
+	if (ft_atol(argv[1]) == 0)
 	{
 		printf("Wrong number of philo\n");
 		error = 1;

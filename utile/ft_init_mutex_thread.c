@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:26:47 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/04 11:35:48 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:01:14 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,13 @@ void	ft_create_philo(t_philo *philo, t_philo_data *philo_data)
 		}
 		i++;
 	}
-	usleep(10);
+	usleep(100);
 	i = 0;
 	while (i < philo->nbr_philo)
 	{
 		if (philo_data[i].id % 2 == 0)
 		{
+			usleep(100);
 			init_die(&philo_data[i]);
 			pthread_create(&philo->thread[i], NULL, ft_philo, &philo_data[i]);
 		}

@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:57 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/04 11:20:28 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:06:04 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		ft_check_argv(char *str);
 int		ft_check(int argc, char **argv);
 int		ft_init_mutex(t_philo *philo);
 int		ft_init_thread(t_philo *philo);
-int		ft_check_zero(t_philo *philo);
+int		ft_check_zero(char **argv);
 int		ft_init_thread_data(t_philo *philo, t_philo_data **philo_data);
 int		ft_check_die_value(t_philo_data *philo_data);
 int		ck_eat_all(t_philo *philo, t_philo_data *philo_data);

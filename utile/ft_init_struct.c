@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:49 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/03 14:23:32 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:06:32 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	ft_init_struct(t_philo *philo, t_philo_data **philo_data,
 	int argc, char **argv)
 {
-	int	inter;
-
-	inter = 0;
 	philo->nbr_philo = ft_atol(argv[1]);
 	philo->time_to_die = ft_atol(argv[2]);
 	philo->time_to_eat = ft_atol(argv[3]);
@@ -32,12 +29,6 @@ int	ft_init_struct(t_philo *philo, t_philo_data **philo_data,
 	if ((ft_init_thread(philo)) > 0)
 		return (EXIT_FAILURE);
 	if ((ft_init_thread_data(philo, philo_data)) > 0)
-		return (EXIT_FAILURE);
-	if ((ft_check(argc, argv)) > 0)
-		inter = 1;
-	if ((ft_check_zero(philo)) > 0)
-		inter = 1;
-	if (inter == 1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gacavali <gacavali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:14:53 by gacavali          #+#    #+#             */
-/*   Updated: 2024/10/10 08:49:20 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:04:50 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	int				i;
 
 	i = 0;
-	if (argc >= 5 && argc < 7)
+	if (!ft_check(argc, argv))
 	{
 		if ((ft_init_struct(&philo, &philo_data, argc, argv)) > 0)
 		{
